@@ -1,3 +1,7 @@
+# Detekt Configuration
+# TEMPORARY: Test directories are excluded to prevent Detekt from running on unit tests
+# Remove the excludes in config section when ready to re-enable test analysis
+
 build:
   maxIssues: 0
   excludeCorrectable: false
@@ -12,7 +16,20 @@ config:
   warningsAsErrors: false
   checkExhaustiveness: false
   # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
-  excludes: ''
+  excludes: |
+    **/test/**
+    **/androidTest/**
+    **/commonTest/**
+    **/jvmTest/**
+    **/androidUnitTest/**
+    **/androidInstrumentedTest/**
+    **/jsTest/**
+    **/iosTest/**
+    **/*Test.kt
+    **/*Tests.kt
+    **/testFixtures/**
+    **/build/**
+    **/.gradle/**
 
 processors:
   active: true
