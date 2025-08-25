@@ -40,7 +40,8 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
-    
+    implementation(project(":core:error"))
+
     // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -50,7 +51,12 @@ dependencies {
 
     // Image Loading
     implementation(libs.coil.compose)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(project(":core:network"))
     
+    // Logging
+    implementation(libs.timber)
+
     // Testing
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
