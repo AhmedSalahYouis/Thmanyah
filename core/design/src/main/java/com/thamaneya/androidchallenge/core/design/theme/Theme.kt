@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.ui.theme
+package com.thamaneya.androidchallenge.core.design.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
