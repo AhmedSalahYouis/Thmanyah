@@ -7,6 +7,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.thamaneya.androidchallenge.feature.home.R
 
 /**
  * Category chips row for filtering content
@@ -16,10 +18,10 @@ fun CategoryChipsRow(
     modifier: Modifier = Modifier
 ) {
     val categories = listOf(
-        "البودكاستات",
-        "المقالات الصوتية", 
-        "الكتب",
-        "الحلقات الجديدة"
+        stringResource(R.string.home_section_podcasts),
+        stringResource(R.string.home_section_audio_articles), 
+        stringResource(R.string.home_section_audio_books),
+        stringResource(R.string.home_section_episodes)
     )
     
     var selectedCategory by remember { mutableStateOf(0) }
