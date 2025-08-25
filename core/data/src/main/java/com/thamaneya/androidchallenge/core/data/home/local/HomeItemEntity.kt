@@ -1,10 +1,8 @@
-package com.thamaneya.androidchallenge.core.data.local
+package com.thamaneya.androidchallenge.core.data.home.local
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import androidx.room.Relation
 import com.thamaneya.androidchallenge.core.model.ContentType
 
 /**
@@ -33,5 +31,6 @@ data class HomeItemEntity(
     val order: Int,
     val lastUpdated: Long = System.currentTimeMillis()
 )
+
 
 

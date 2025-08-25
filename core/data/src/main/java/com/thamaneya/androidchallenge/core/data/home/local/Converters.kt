@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.data.local
+package com.thamaneya.androidchallenge.core.data.home.local
 
 import androidx.room.TypeConverter
 import com.thamaneya.androidchallenge.core.model.ContentType
@@ -37,6 +37,7 @@ class Converters {
         }
     }
 }
+
 
 
 

@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.data.local
+package com.thamaneya.androidchallenge.core.data.home.local
 
 import androidx.paging.PagingSource
 import androidx.room.*

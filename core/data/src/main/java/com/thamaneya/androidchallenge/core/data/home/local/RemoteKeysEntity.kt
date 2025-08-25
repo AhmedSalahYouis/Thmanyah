@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.data.local
+package com.thamaneya.androidchallenge.core.data.home.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -14,6 +14,7 @@ data class RemoteKeysEntity(
     val nextKey: Int?,
     val lastUpdated: Long = System.currentTimeMillis()
 )
+
 
 
 

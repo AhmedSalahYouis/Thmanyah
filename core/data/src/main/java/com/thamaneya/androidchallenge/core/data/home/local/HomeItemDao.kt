@@ -1,7 +1,6 @@
-package com.thamaneya.androidchallenge.core.data.local
+package com.thamaneya.androidchallenge.core.data.home.local
 
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 
 /**
  * DAO for HomeItem database operations
@@ -21,6 +20,7 @@ interface HomeItemDao {
     @Query("SELECT COUNT(*) FROM home_items WHERE sectionId = :sectionId")
     suspend fun getItemCountBySection(sectionId: String): Int
 }
+
 
 
 

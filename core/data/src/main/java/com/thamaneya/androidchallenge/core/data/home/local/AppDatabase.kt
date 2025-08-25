@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.data.local
+package com.thamaneya.androidchallenge.core.data.home.local
 
 import androidx.room.Database
 import androidx.room.Room
@@ -45,6 +45,7 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+
 
 
 

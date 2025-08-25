@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.data.local
+package com.thamaneya.androidchallenge.core.data.home.local
 
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -21,6 +21,7 @@ data class HomeSectionEntity(
     val page: Int,
     val lastUpdated: Long = System.currentTimeMillis()
 )
+
 
 
 

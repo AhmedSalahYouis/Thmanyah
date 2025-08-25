@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.data.local
+package com.thamaneya.androidchallenge.core.data.home.local
 
 import androidx.room.*
 
@@ -23,6 +23,7 @@ interface RemoteKeysDao {
     @Query("DELETE FROM remote_keys")
     suspend fun deleteAllRemoteKeys()
 }
+
 
 
 
