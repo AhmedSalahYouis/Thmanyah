@@ -1,9 +1,14 @@
-package com.thamaneya.androidchallenge.core.data
+package com.thamaneya.androidchallenge.core.data.mapper
 
-import com.thamaneya.androidchallenge.core.data.local.HomeItemEntity
-import com.thamaneya.androidchallenge.core.data.local.HomeSectionEntity
+import com.thamaneya.androidchallenge.core.data.home.local.HomeItemEntity
+import com.thamaneya.androidchallenge.core.data.home.local.HomeSectionEntity
+import com.thamaneya.androidchallenge.core.model.AudioArticleItem
+import com.thamaneya.androidchallenge.core.model.AudioBookItem
+import com.thamaneya.androidchallenge.core.model.ContentType
+import com.thamaneya.androidchallenge.core.model.EpisodeItem
 import com.thamaneya.androidchallenge.core.model.HomeItem
 import com.thamaneya.androidchallenge.core.model.HomeSection
+import com.thamaneya.androidchallenge.core.model.PodcastItem
 
 /**
  * Mapper for converting between Room entities and domain models
@@ -33,8 +38,8 @@ class HomeEntityMapper {
         // Since HomeItem is a sealed interface, we need to determine the concrete type
         // For now, we'll use PodcastItem as default - this should be improved based on contentType
         return when (itemEntity.contentType) {
-            com.thamaneya.androidchallenge.core.model.ContentType.PODCAST -> 
-                com.thamaneya.androidchallenge.core.model.PodcastItem(
+            ContentType.PODCAST ->
+                PodcastItem(
                     id = itemEntity.id,
                     name = itemEntity.name,
                     description = itemEntity.description,
@@ -46,8 +51,8 @@ class HomeEntityMapper {
                     popularityScore = null,
                     score = null
                 )
-            com.thamaneya.androidchallenge.core.model.ContentType.EPISODE ->
-                com.thamaneya.androidchallenge.core.model.EpisodeItem(
+            ContentType.EPISODE ->
+                EpisodeItem(
                     id = itemEntity.id,
                     name = itemEntity.name,
                     description = itemEntity.description,
@@ -60,8 +65,8 @@ class HomeEntityMapper {
                     episodeType = "",
                     score = null
                 )
-            com.thamaneya.androidchallenge.core.model.ContentType.AUDIO_BOOK ->
-                com.thamaneya.androidchallenge.core.model.AudioBookItem(
+            ContentType.AUDIO_BOOK ->
+                AudioBookItem(
                     id = itemEntity.id,
                     name = itemEntity.name,
                     description = itemEntity.description,
@@ -72,8 +77,8 @@ class HomeEntityMapper {
                     releaseDateIso = "",
                     score = null
                 )
-            com.thamaneya.androidchallenge.core.model.ContentType.AUDIO_ARTICLE ->
-                com.thamaneya.androidchallenge.core.model.AudioArticleItem(
+            ContentType.AUDIO_ARTICLE ->
+                AudioArticleItem(
                     id = itemEntity.id,
                     name = itemEntity.name,
                     description = itemEntity.description,
@@ -83,7 +88,7 @@ class HomeEntityMapper {
                     releaseDateIso = "",
                     score = null
                 )
-            else -> com.thamaneya.androidchallenge.core.model.PodcastItem(
+            else -> PodcastItem(
                 id = itemEntity.id,
                 name = itemEntity.name,
                 description = itemEntity.description,

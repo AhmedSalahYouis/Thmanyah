@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.data
+package com.thamaneya.androidchallenge.core.data.home
 
 import android.util.Log
 import androidx.paging.ExperimentalPagingApi
@@ -6,7 +6,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.thamaneya.androidchallenge.core.data.local.AppDatabase
+import com.thamaneya.androidchallenge.core.data.mapper.HomeEntityMapper
+import com.thamaneya.androidchallenge.core.data.home.local.AppDatabase
 import com.thamaneya.androidchallenge.core.model.HomeSection
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

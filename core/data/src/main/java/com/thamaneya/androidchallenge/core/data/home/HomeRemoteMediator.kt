@@ -1,23 +1,20 @@
-package com.thamaneya.androidchallenge.core.data
+package com.thamaneya.androidchallenge.core.data.home
 
 import android.os.Build
 import androidx.annotation.RequiresExtension
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
-import androidx.paging.PagingSource.LoadResult
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import androidx.room.withTransaction
-import com.thamaneya.androidchallenge.core.data.local.AppDatabase
-import com.thamaneya.androidchallenge.core.data.local.HomeItemEntity
-import com.thamaneya.androidchallenge.core.data.local.HomeSectionEntity
-import com.thamaneya.androidchallenge.core.data.local.RemoteKeysEntity
+import com.thamaneya.androidchallenge.core.data.mapper.HomeSectionMapper
+import com.thamaneya.androidchallenge.core.data.home.local.AppDatabase
+import com.thamaneya.androidchallenge.core.data.home.local.HomeItemEntity
+import com.thamaneya.androidchallenge.core.data.home.local.HomeSectionEntity
+import com.thamaneya.androidchallenge.core.data.home.local.RemoteKeysEntity
 import com.thamaneya.androidchallenge.core.network.HomeApi
 import com.thamaneya.error.DataErrorException
 import com.thamaneya.error.IDataErrorProvider
 import com.thamaneya.logger.logging.ITimberLogger
-import retrofit2.HttpException
-import java.io.IOException
 
 /**
  * RemoteMediator for handling offline-first data with remote synchronization
@@ -30,7 +27,7 @@ class HomeRemoteMediator(
     private val logger: ITimberLogger,
     private val dataErrorProvider: IDataErrorProvider,
 
-) : RemoteMediator<Int, HomeSectionEntity>() {
+    ) : RemoteMediator<Int, HomeSectionEntity>() {
 
     private val homeSectionDao = database.homeSectionDao()
     private val homeItemDao = database.homeItemDao()

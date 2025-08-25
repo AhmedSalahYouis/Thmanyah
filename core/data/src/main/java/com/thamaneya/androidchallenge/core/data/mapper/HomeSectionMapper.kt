@@ -1,10 +1,11 @@
-package com.thamaneya.androidchallenge.core.data
+package com.thamaneya.androidchallenge.core.data.mapper
 
 import com.google.gson.Gson
 import com.thamaneya.androidchallenge.core.model.AudioArticleItem
 import com.thamaneya.androidchallenge.core.model.AudioBookItem
 import com.thamaneya.androidchallenge.core.model.ContentType
 import com.thamaneya.androidchallenge.core.model.EpisodeItem
+import com.thamaneya.androidchallenge.core.model.HomeItem
 import com.thamaneya.androidchallenge.core.model.HomeSection
 import com.thamaneya.androidchallenge.core.model.PodcastItem
 import com.thamaneya.androidchallenge.core.network.AudioArticleDto
@@ -31,23 +32,22 @@ class HomeSectionMapper(
     fun mapToHomeSection(sectionDto: SectionDto): HomeSection {
         try {
             logger.logDebug("Mapping section: ${sectionDto.name}")
-            
-            val layout = sectionDto.normalizedLayout()
-            val contentType = sectionDto.normalizedContentType()
-            
-            val items = when (contentType) {
-                ContentType.PODCAST -> mapPodcastItems(sectionDto.content)
-                ContentType.EPISODE -> mapEpisodeItems(sectionDto.content)
-                ContentType.AUDIO_BOOK -> mapAudioBookItems(sectionDto.content)
-                ContentType.AUDIO_ARTICLE -> mapAudioArticleItems(sectionDto.content)
-                ContentType.UNKNOWN -> emptyList()
-            }
 
+            val layout = sectionDto.normalizedLayout()
+            var contentType = sectionDto.normalizedContentType()
+
+            val items = if (contentType == ContentType.UNKNOWN){
+                // Attempt to infer content type if not explicitly set and items are empty
+                contentType = inferContentTypeFromContent(sectionDto.content)
+                mapContentItems(contentType, sectionDto.content)
+            }else {
+                mapContentItems(contentType, sectionDto.content)
+            }
             logger.logDebug("Successfully mapped section: ${sectionDto.name} with ${items.size} items")
-            
+
             return HomeSection(
                 name = sectionDto.name,
-                order = sectionDto.order,
+                order = sectionDto.order as? Int ?: 0,
                 layout = layout,
                 contentType = contentType,
                 items = items.distinctBy { it.id } // Deduplicate by ID
@@ -55,6 +55,26 @@ class HomeSectionMapper(
         } catch (e: Exception) {
             logger.logError("Failed to map section: ${sectionDto.name}", e)
             throw e
+        }
+    }
+
+    private fun mapContentItems(contentType: ContentType, content: List<Map<String, Any>>): List<HomeItem> {
+        return when (contentType) {
+                ContentType.PODCAST -> mapPodcastItems(content)
+                ContentType.EPISODE -> mapEpisodeItems(content)
+                ContentType.AUDIO_BOOK -> mapAudioBookItems(content)
+                ContentType.AUDIO_ARTICLE -> mapAudioArticleItems(content)
+                ContentType.UNKNOWN -> emptyList()
+            }
+    }
+
+    private fun inferContentTypeFromContent(content: List<Map<String, Any>>): ContentType {
+        return when {
+            content.all { it.containsKey("podcast_id") } -> ContentType.PODCAST
+            content.all { it.containsKey("episode_id") } -> ContentType.EPISODE
+            content.all { it.containsKey("audiobook_id") } -> ContentType.AUDIO_BOOK
+            content.all { it.containsKey("article_id") } -> ContentType.AUDIO_ARTICLE
+            else -> ContentType.UNKNOWN
         }
     }
 
@@ -70,11 +90,11 @@ class HomeSectionMapper(
                     description = dto.description.toPlainText(),
                     avatarUrl = dto.avatarUrl,
                     durationSeconds = dto.duration,
-                    episodeCount = dto.episodeCount,
+                    episodeCount = dto.episodeCount as? Int ?: 0,
                     language = dto.language,
-                    priority = dto.priority,
-                    popularityScore = dto.popularityScore,
-                    score = dto.score
+                    priority = dto.priority as? Int,
+                    popularityScore = dto.popularityScore as? Int ?: 0,
+                    score = dto.score as? Double
                 )
             } catch (e: Exception) {
                 logger.logError("Failed to map podcast item: ${itemMap["name"]}", e)
