@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_module_name">الرئيسية</string>
+    
+    <!-- Home Screen -->
+    <string name="home_screen_title">الرئيسية</string>
+    <string name="home_screen_pull_to_refresh">اسحب للتحديث</string>
+    <string name="home_screen_refreshing">جاري التحديث…</string>
+    
+    <!-- Error Messages -->
+    <string name="home_error_loading_content">حدث خطأ في تحميل المحتوى</string>
+    <string name="home_error_network">خطأ في الاتصال بالشبكة</string>
+    <string name="home_error_unknown">حدث خطأ غير متوقع</string>
+    
+    <!-- Loading States -->
+    <string name="home_loading_content">جاري تحميل المحتوى…</string>
+    <string name="home_loading_more">جاري تحميل المزيد…</string>
+    
+    <!-- Empty States -->
+    <string name="home_empty_no_content">لا يوجد محتوى متاح</string>
+    <string name="home_empty_no_sections">لا توجد أقسام متاحة</string>
+    
+    <!-- Action Buttons -->
+    <string name="home_action_retry">إعادة المحاولة</string>
+    <string name="home_action_refresh">تحديث</string>
+    <string name="home_action_view_all">عرض الكل</string>
+    <string name="home_action_play">تشغيل</string>
+    <string name="home_action_pause">إيقاف مؤقت</string>
+    
+    <!-- Section Headers -->
+    <string name="home_section_podcasts">البودكاست</string>
+    <string name="home_section_episodes">الحلقات</string>
+    <string name="home_section_audio_books">الكتب الصوتية</string>
+    <string name="home_section_audio_articles">المقالات الصوتية</string>
+    
+    <!-- Content Descriptions -->
+    <string name="home_content_podcast_image">صورة البودكاست</string>
+    <string name="home_content_episode_image">صورة الحلقة</string>
+    <string name="home_content_audio_book_image">صورة الكتاب الصوتي</string>
+    <string name="home_content_article_image">صورة المقال</string>
+    
+    <!-- Accessibility -->
+    <string name="home_accessibility_category_chips">أزرار التصنيف</string>
+    <string name="home_accessibility_section_header">رأس القسم</string>
+    <string name="home_accessibility_content_item">عنصر المحتوى</string>
+    <string name="home_accessibility_loading_indicator">مؤشر التحميل</string>
+    
+    <!-- Time and Duration -->
+    <string name="home_duration_format">%d دقيقة</string>
+    <string name="home_duration_seconds_format">%d ثانية</string>
+    <string name="home_duration_hours_format">%d ساعة</string>
+    
+    <!-- Episode Information -->
+    <string name="home_episode_season_format">الموسم %d</string>
+    <string name="home_episode_number_format">الحلقة %d</string>
+    <string name="home_episode_release_date">تاريخ الإصدار: %s</string>
+    
+    <!-- Language -->
+    <string name="home_language_arabic">العربية</string>
+    <string name="home_language_english">الإنجليزية</string>
+    <string name="home_language_unknown">غير محدد</string>
+    
+    <!-- Priority and Score -->
+    <string name="home_priority_high">عالية</string>
+    <string name="home_priority_medium">متوسطة</string>
+    <string name="home_priority_low">منخفضة</string>
+    <string name="home_score_format">التقييم: %.1f</string>
+    
+    <!-- Navigation -->
+    <string name="home_nav_to_podcast_detail">انتقال إلى تفاصيل البودكاست</string>
+    <string name="home_nav_to_episode_detail">انتقال إلى تفاصيل الحلقة</string>
+    <string name="home_nav_to_audio_book_detail">انتقال إلى تفاصيل الكتاب الصوتي</string>
+    <string name="home_nav_to_article_detail">انتقال إلى تفاصيل المقال</string>
+    
+    <!-- Additional Arabic-specific resources -->
+    <string name="home_welcome_message">مرحباً بك في ثمانية</string>
+
+    <!-- Arabic cultural context -->
+    <string name="home_ramadan_greeting">رمضان كريم</string>
+    <string name="home_eid_greeting">عيد مبارك</string>
+    <string name="home_weekend_greeting">أهلاً بالعطلة</string>
+    <string name="home_morning_greeting">صباح الخير</string>
+    <string name="home_evening_greeting">مساء الخير</string>
+
+    <!-- Status messages -->
+    <string name="home_status_offline">غير متصل بالإنترنت</string>
+    <string name="home_status_syncing">جاري المزامنة</string>
+    <string name="home_status_synced">تمت المزامنة</string>
+    <string name="home_status_sync_failed">فشلت المزامنة</string>
+    
+    <!-- Search and filter -->
+    <string name="home_search_hint">ابحث في المحتوى</string>
+    <string name="home_filter_all">الكل</string>
+    <string name="home_filter_recent">الأحدث</string>
+    <string name="home_filter_popular">الأكثر شعبية</string>
+    <string name="home_filter_favorites">المفضلة</string>
+    
+    <string name="empty_sections_message">نقوم بطبخ شيء جديد، ترقبوا!</string>
+
+</resources>
