@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_title">بحث</string>
+    <string name="search_placeholder">ابحث في أي شيء…</string>
+    <string name="search_back_button">رجوع</string>
+    <string name="search_icon_description">بحث</string>
+    <string name="search_action_retry">إعادة المحاولة</string>
+    <string name="search_error_unknown">حدث خطأ أثناء البحث</string>
+    <string name="search_empty_results">لم يتم العثور على نتائج لبحثك</string>
+    <string name="search_empty_query_guide">يمكنك استخدام البحث لإيجاد المزيد من الحلقات و البودكاستات</string>
+</resources>
+

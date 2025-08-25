@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_title">Search</string>
+    <string name="search_placeholder">Search anything…</string>
+    <string name="search_back_button">Back</string>
+    <string name="search_icon_description">Search</string>
+    <string name="search_action_retry">Retry</string>
+    <string name="search_error_unknown">An error occurred while searching</string>
+    <string name="search_empty_results">No results found for your search</string>
+    <string name="search_empty_query_guide">You can use search to find more episodes and podcasts</string>
+</resources>
+
