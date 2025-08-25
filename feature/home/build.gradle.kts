@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.thamaneya.androidchallenge.feature.home"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -41,8 +41,9 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:data"))
+    implementation(project(":core:logger"))
     implementation(project(":core:ui"))
-    
+
     // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -63,7 +64,8 @@ dependencies {
     
     // Navigation
     implementation(libs.navigation.compose)
-    
+    implementation(project(":core:error"))
+
     // Testing
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
