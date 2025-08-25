@@ -10,11 +10,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
+
+    single<NetworkMonitor> { ConnectivityManagerNetworkMonitor(get()) }
+
     single {
         GsonBuilder()
             .create()
     }
-    
+
     single {
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
@@ -25,7 +28,7 @@ val networkModule = module {
             .writeTimeout(30, TimeUnit.SECONDS)
             .build()
     }
-    
+
     single {
         Retrofit.Builder()
             .baseUrl("https://api-v2-b2sit6oh3a-uc.a.run.app")
@@ -33,7 +36,7 @@ val networkModule = module {
             .addConverterFactory(GsonConverterFactory.create(get<Gson>()))
             .build()
     }
-    
+
     single {
         get<Retrofit>().create(HomeApi::class.java)
     }

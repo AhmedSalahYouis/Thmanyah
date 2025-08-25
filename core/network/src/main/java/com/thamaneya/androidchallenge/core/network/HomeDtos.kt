@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * Top level response DTO
  */
 data class HomeResponseDto(
-    val sections: List<SectionDto>,
+    val sections: List<SectionDto?>,
     val pagination: PaginationDto
 )
 
