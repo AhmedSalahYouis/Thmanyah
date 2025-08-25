@@ -1,7 +1,6 @@
 package com.thamaneya.androidchallenge.navigation
 
 import androidx.navigation.NavType
-import androidx.navigation.navArgument
 
 /**
  * Main navigation routes for the app
