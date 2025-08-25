@@ -1,30 +1,27 @@
 package com.thamaneya.androidchallenge.feature.home
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,28 +38,31 @@ import com.thamaneya.androidchallenge.core.model.HomeItem
 import com.thamaneya.androidchallenge.core.model.HomeSection
 import com.thamaneya.androidchallenge.core.model.PodcastItem
 import com.thamaneya.androidchallenge.core.model.SectionLayout
-import com.thamaneya.androidchallenge.core.ui.components.CoreCard
-import com.thamaneya.androidchallenge.core.ui.components.CoreCardTwoLines
 import com.thamaneya.androidchallenge.core.ui.components.EmptyView
+import com.thamaneya.androidchallenge.core.ui.components.ErrorView
 import com.thamaneya.androidchallenge.core.ui.components.ProgressView
-import com.thamaneya.androidchallenge.core.ui.components.SectionHeader
+import com.thamaneya.androidchallenge.core.ui.components.SectionItem
 import com.thamaneya.androidchallenge.core.ui.extensions.toUiText
 import com.thamaneya.androidchallenge.feature.home.components.CategoryChipsRow
-import com.thamaneya.androidchallenge.core.ui.components.ErrorView
 import com.thamaneya.error.DataErrorException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
 /**
  * Main route for the Home feature
  */
+
+@Serializable
+object Home
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinViewModel(),
     onItemClick: (HomeItem) -> Unit = {},
+    onSearchClick: () -> Unit = {},
 ) {
 
     val pagingItems = viewModel.pagingFlow.collectAsLazyPagingItems()
@@ -84,7 +84,8 @@ fun HomeRoute(
             },
             onRetry = {
                 viewModel.onEvent(HomeEvent.OnRetry)
-            }
+            },
+            onSearchClick = onSearchClick
         )
     }
 }
@@ -92,16 +93,31 @@ fun HomeRoute(
 /**
  * Composable that displays the home content.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun HomeContent(
     pagingItems: LazyPagingItems<HomeSection>,
     onItemClick: (HomeItem) -> Unit,
     onSectionVisible: (HomeSection) -> Unit,
     onRetry: () -> Unit,
+    onSearchClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.home_screen_title)) },
+                actions = {
+                    IconButton(onClick = onSearchClick) {
+                        Icon(
+                            Icons.Default.Search,
+                            contentDescription = stringResource(R.string.search_icon_description)
+                        )
+                    }
+                }
+            )
+        },
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { scaffoldPaddings ->
 
@@ -189,122 +205,6 @@ private fun HomeContent(
     }
 }
 
-/**
- * Section item composable
- */
-@Composable
-private fun SectionItem(
-    section: HomeSection,
-    onItemClick: (HomeItem) -> Unit,
-    onSectionVisible: () -> Unit
-) {
-    Column(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        SectionHeader(
-            title = section.name,
-            showAction = true,
-            onActionClick = { /* TODO: Navigate to section detail */ }
-        )
-
-        when (section.layout) {
-            SectionLayout.SQUARE -> {
-                LazyHorizontalGrid(
-                    rows = GridCells.Fixed(1),
-                    contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(max = 200.dp)
-                ) {
-                    items(section.items) { item ->
-                        CoreCard(
-                            item = item,
-                            onClick = { onItemClick(item) }
-                        )
-                    }
-                }
-            }
-
-            SectionLayout.TWO_LINES_GRID -> {
-                LazyHorizontalGrid(
-                    rows = GridCells.Fixed(if (section.items.size == 1) 1 else 2),
-                    contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(min= 100.dp,max = 300.dp)
-                ) {
-                    items(section.items) { item ->
-                        CoreCardTwoLines(
-                            item = item,
-                            onClick = { onItemClick(item) }
-                        )
-                    }
-                }
-            }
-
-            SectionLayout.BIG_SQUARE -> {
-                // Fallback to square layout
-                LazyHorizontalGrid(
-                    rows = GridCells.Fixed(1),
-                    contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(max = 200.dp)
-                ) {
-                    items(section.items) { item ->
-                        CoreCard(
-                            item = item,
-                            onClick = { onItemClick(item) }
-                        )
-                    }
-                }
-            }
-
-            SectionLayout.QUEUE -> {
-                // Fallback to square layout
-                LazyHorizontalGrid(
-                    rows = GridCells.Fixed(1),
-                    contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(max = 200.dp)
-                ) {
-                    items(section.items) { item ->
-                        CoreCard(
-                            item = item,
-                            onClick = { onItemClick(item) }
-                        )
-                    }
-                }
-            }
-
-            SectionLayout.UNKNOWN -> {
-                // Fallback to square layout
-                LazyHorizontalGrid(
-                    rows = GridCells.Fixed(1),
-                    contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(max = 200.dp)
-                ) {
-                    items(section.items) { item ->
-                        CoreCard(
-                            item = item,
-                            onClick = { onItemClick(item) }
-                        )
-                    }
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-    }
-
-    LaunchedEffect(Unit) {
-        onSectionVisible()
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
 fun SectionItemSquarePreview() {
@@ -373,7 +273,8 @@ private fun HomeContentPreview_Default() {
                 onItemClick = { /* no-op for preview */ },
                 onSectionVisible = { /* no-op for preview */ },
                 onRetry = { /* no-op for preview */ },
-                modifier = Modifier
+                modifier = Modifier,
+                onSearchClick = {}
             )
         }
     }
@@ -400,7 +301,8 @@ private fun HomeContentPreview_Empty() {
                 onItemClick = { },
                 onSectionVisible = { },
                 onRetry = { },
-                modifier = Modifier
+                modifier = Modifier,
+                onSearchClick = {}
             )
         }
     }

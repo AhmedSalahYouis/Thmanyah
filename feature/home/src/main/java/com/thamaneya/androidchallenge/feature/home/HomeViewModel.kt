@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.thamaneya.androidchallenge.core.data.HomeRepository
+import com.thamaneya.androidchallenge.core.data.home.HomeRepository
 import com.thamaneya.androidchallenge.core.model.HomeSection
 import com.thamaneya.logger.logging.ITimberLogger
 import kotlinx.coroutines.flow.MutableStateFlow

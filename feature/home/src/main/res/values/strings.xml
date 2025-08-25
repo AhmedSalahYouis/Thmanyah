@@ -79,4 +79,5 @@
     <string name="home_status_synced">Synced</string>
     <string name="home_status_sync_failed">Sync failed</string>
     <string name="empty_sections_message">Cooking Something new, stay tuned!</string>
+    <string name="search_icon_description">Search icon</string>
 </resources>
