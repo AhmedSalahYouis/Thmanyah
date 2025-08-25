@@ -10,7 +10,10 @@ interface RemoteKeysDao {
     
     @Query("SELECT * FROM remote_keys WHERE sectionId = :sectionId")
     suspend fun getRemoteKeyBySectionId(sectionId: String): RemoteKeysEntity?
-    
+
+    @Query("SELECT * FROM remote_keys WHERE sectionId = (SELECT MAX(sectionId) FROM remote_keys)")
+    suspend fun getLastRemoteKey(): RemoteKeysEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRemoteKeys(remoteKeys: List<RemoteKeysEntity>)
     
@@ -20,5 +23,6 @@ interface RemoteKeysDao {
     @Query("DELETE FROM remote_keys")
     suspend fun deleteAllRemoteKeys()
 }
+
 
 

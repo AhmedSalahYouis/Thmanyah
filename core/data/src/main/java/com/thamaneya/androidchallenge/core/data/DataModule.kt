@@ -1,6 +1,7 @@
 package com.thamaneya.androidchallenge.core.data
 
 import com.thamaneya.androidchallenge.core.data.local.AppDatabase
+import com.thamaneya.logger.logging.ITimberLogger
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -9,7 +10,7 @@ val dataModule = module {
     single<AppDatabase> { AppDatabase.getInstance(androidContext()) }
     
     // Mappers
-    single<HomeSectionMapper> { HomeSectionMapper() }
+    single<HomeSectionMapper> { HomeSectionMapper(logger = get<ITimberLogger>()) }
     single<HomeEntityMapper> { HomeEntityMapper() }
     
     // RemoteMediator
@@ -17,7 +18,9 @@ val dataModule = module {
         HomeRemoteMediator(
             api = get(),
             database = get(),
-            mapper = get()
+            mapper = get(),
+            logger = get<ITimberLogger>(),
+            dataErrorProvider = get()
         )
     }
     

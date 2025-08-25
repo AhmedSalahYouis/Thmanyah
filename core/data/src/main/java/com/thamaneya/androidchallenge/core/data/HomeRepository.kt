@@ -9,7 +9,6 @@ import androidx.paging.map
 import com.thamaneya.androidchallenge.core.data.local.AppDatabase
 import com.thamaneya.androidchallenge.core.model.HomeSection
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
@@ -31,7 +30,6 @@ class HomeRepositoryImpl(
     private val entityMapper: HomeEntityMapper
 ) : HomeRepository {
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     override fun pagedSections(): Flow<PagingData<HomeSection>> {
         Log.d("HomeRepository", "Creating Pager with RemoteMediator")
         return Pager(
@@ -42,11 +40,7 @@ class HomeRepositoryImpl(
             ),
             remoteMediator = remoteMediator,
             pagingSourceFactory = {
-                Log.d("HomeRepository", "Using custom HomeSectionPagingSource")
-                // Use custom PagingSource that reads from database
-                HomeSectionPagingSource(
-                    database.homeSectionDao(),
-                )
+                database.homeSectionDao().pagingSource()
             }
         ).flow.map { pagingData ->
             pagingData.map { sectionEntity ->
@@ -57,6 +51,5 @@ class HomeRepositoryImpl(
                 entityMapper.mapToHomeSection(sectionEntity, items)
             }
         }
-
     }
 }

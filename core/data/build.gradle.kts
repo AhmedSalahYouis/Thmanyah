@@ -35,7 +35,9 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:network"))
-    
+    implementation(project(":core:logger"))
+    implementation(project(":core:error"))
+
     // Paging
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)

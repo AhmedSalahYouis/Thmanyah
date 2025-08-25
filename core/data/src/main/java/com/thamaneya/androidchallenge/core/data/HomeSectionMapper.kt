@@ -14,11 +14,14 @@ import com.thamaneya.androidchallenge.core.network.PodcastDto
 import com.thamaneya.androidchallenge.core.network.SectionDto
 import com.thamaneya.androidchallenge.core.network.normalizedContentType
 import com.thamaneya.androidchallenge.core.network.normalizedLayout
+import com.thamaneya.logger.logging.ITimberLogger
 
 /**
  * Mapper to convert network DTOs to domain models
  */
-class HomeSectionMapper {
+class HomeSectionMapper(
+    private val logger: ITimberLogger
+) {
 
     private val gson = Gson()
 
@@ -26,24 +29,33 @@ class HomeSectionMapper {
      * Map SectionDto to HomeSection domain model
      */
     fun mapToHomeSection(sectionDto: SectionDto): HomeSection {
-        val layout = sectionDto.normalizedLayout()
-        val contentType = sectionDto.normalizedContentType()
-        
-        val items = when (contentType) {
-            ContentType.PODCAST -> mapPodcastItems(sectionDto.content)
-            ContentType.EPISODE -> mapEpisodeItems(sectionDto.content)
-            ContentType.AUDIO_BOOK -> mapAudioBookItems(sectionDto.content)
-            ContentType.AUDIO_ARTICLE -> mapAudioArticleItems(sectionDto.content)
-            ContentType.UNKNOWN -> emptyList()
-        }
+        try {
+            logger.logDebug("Mapping section: ${sectionDto.name}")
+            
+            val layout = sectionDto.normalizedLayout()
+            val contentType = sectionDto.normalizedContentType()
+            
+            val items = when (contentType) {
+                ContentType.PODCAST -> mapPodcastItems(sectionDto.content)
+                ContentType.EPISODE -> mapEpisodeItems(sectionDto.content)
+                ContentType.AUDIO_BOOK -> mapAudioBookItems(sectionDto.content)
+                ContentType.AUDIO_ARTICLE -> mapAudioArticleItems(sectionDto.content)
+                ContentType.UNKNOWN -> emptyList()
+            }
 
-        return HomeSection(
-            name = sectionDto.name,
-            order = sectionDto.order,
-            layout = layout,
-            contentType = contentType,
-            items = items.distinctBy { it.id } // Deduplicate by ID
-        )
+            logger.logDebug("Successfully mapped section: ${sectionDto.name} with ${items.size} items")
+            
+            return HomeSection(
+                name = sectionDto.name,
+                order = sectionDto.order,
+                layout = layout,
+                contentType = contentType,
+                items = items.distinctBy { it.id } // Deduplicate by ID
+            )
+        } catch (e: Exception) {
+            logger.logError("Failed to map section: ${sectionDto.name}", e)
+            throw e
+        }
     }
 
     private fun mapPodcastItems(content: List<Map<String, Any>>): List<PodcastItem> {
@@ -65,6 +77,7 @@ class HomeSectionMapper {
                     score = dto.score
                 )
             } catch (e: Exception) {
+                logger.logError("Failed to map podcast item: ${itemMap["name"]}", e)
                 null
             }
         }
@@ -90,6 +103,7 @@ class HomeSectionMapper {
                     score = dto.score
                 )
             } catch (e: Exception) {
+                logger.logError("Failed to map episode item: ${itemMap["name"]}", e)
                 null
             }
         }
@@ -113,6 +127,7 @@ class HomeSectionMapper {
                     score = dto.score
                 )
             } catch (e: Exception) {
+                logger.logError("Failed to map audio book item: ${itemMap["name"]}", e)
                 null
             }
         }
@@ -135,6 +150,7 @@ class HomeSectionMapper {
                     score = dto.score
                 )
             } catch (e: Exception) {
+                logger.logError("Failed to map audio article item: ${itemMap["name"]}", e)
                 null
             }
         }
