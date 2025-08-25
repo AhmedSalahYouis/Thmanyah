@@ -22,16 +22,15 @@ class DataErrorProvider : IDataErrorProvider {
                 DataError.Network.REQUEST_TIMEOUT
             }
 
+            throwable is java.net.UnknownHostException -> {
+                DataError.Network.NETWORK_EXCEPTION
+            }
             throwable is HttpException -> {
                 DataError.Network.HTTP_ERROR
             }
-            
+
             throwable is MapperException -> {
                 DataError.Network.PARSING_ERROR
-            }
-
-            throwable is NetworkException -> {
-                DataError.Network.NETWORK_EXCEPTION
             }
 
             else -> {
