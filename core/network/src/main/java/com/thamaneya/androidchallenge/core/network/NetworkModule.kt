@@ -31,7 +31,7 @@ val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl("https://api-v2-b2sit6oh3a-uc.a.run.app")
+            .baseUrl("https://mock.apidog.com/m1/735111-711675-default/")
             .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create(get<Gson>()))
             .build()
@@ -39,5 +39,9 @@ val networkModule = module {
 
     single {
         get<Retrofit>().create(HomeApi::class.java)
+    }
+
+    single {
+        get<Retrofit>().create(SearchApi::class.java)
     }
 }

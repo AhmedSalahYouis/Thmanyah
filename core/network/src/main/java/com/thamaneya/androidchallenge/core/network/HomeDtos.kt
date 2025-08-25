@@ -30,7 +30,7 @@ data class SectionDto(
     val type: String,
     @SerializedName("content_type")
     val contentType: String,
-    val order: Int,
+    val order: Any,
     val content: List<Map<String, Any>>
 )
 
@@ -71,13 +71,13 @@ data class PodcastDto(
     @SerializedName("avatar_url")
     val avatarUrl: String,
     @SerializedName("episode_count")
-    val episodeCount: Int,
+    val episodeCount: Any,
     val duration: Int?,
     val language: String?,
-    val priority: Int?,
+    val priority: Any?,
     @SerializedName("popularityScore")
-    val popularityScore: Int?,
-    val score: Double?
+    val popularityScore: Any?,
+    val score: Any?
 )
 
 /**
