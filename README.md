@@ -68,6 +68,13 @@ A modern Android application built with cutting-edge technologies, showcasing be
 - **KSP**: Kotlin Symbol Processing
 - **Version Catalogs**: Centralized dependency management
 
+### Dependency Management
+- **Dependabot**: Automated dependency updates and security alerts
+    - **Automated PRs**: Automatic pull requests for outdated dependencies
+    - **Security Scanning**: Vulnerability detection and updates
+    - **Version Management**: Keeps dependencies up-to-date with minimal manual intervention
+    - **Multi-Platform**: Supports Android, Gradle, and other dependency ecosystems
+
 ## 🏗 Project Structure
 
 ```
