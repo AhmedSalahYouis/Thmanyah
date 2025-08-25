@@ -13,9 +13,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.thamaneya.androidchallenge.core.network.NetworkMonitor
 import com.thamaneya.androidchallenge.core.ui.app.ThmanyahAppState
-import com.thamaneya.androidchallenge.feature.home.HomeRoute
+import com.thamaneya.androidchallenge.navigation.AppNavHost
 import com.thamaneya.androidchallenge.ui.theme.ThmanyahTheme
 import com.thamaneya.logger.logging.ITimberLogger
 import org.koin.android.ext.android.inject
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val appState = rememberThmanyahAppState(networkMonitor = networkMonitor)
-
+            val navController = rememberNavController()
             ThmanyahTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -40,10 +41,12 @@ class MainActivity : ComponentActivity() {
                     ThmanyahApp(
                         appState = appState,
                         content = {
-                            HomeRoute()
+                            AppNavHost(appState)
                         })
                 }
             }
+
+
         }
 
         logger.logInfo("MainActivity: onCreate completed")
@@ -70,7 +73,7 @@ fun ThmanyahApp(
             snackbarHostState.currentSnackbarData?.dismiss()
         }
     }
-     content()
+    content()
 }
 
 @Preview(showBackground = true)

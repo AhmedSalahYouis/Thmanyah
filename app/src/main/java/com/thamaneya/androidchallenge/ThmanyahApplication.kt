@@ -2,8 +2,10 @@ package com.thamaneya.androidchallenge
 
 import android.app.Application
 import com.thamaneya.androidchallenge.core.data.dataModule
+import com.thamaneya.androidchallenge.core.data.dispatcherModule
 import com.thamaneya.androidchallenge.core.network.networkModule
 import com.thamaneya.androidchallenge.feature.home.homeModule
+import com.thamaneya.androidchallenge.feature.search.searchModule
 import com.thamaneya.error.errorModule
 import com.thamaneya.logger.logging.loggingModule
 import org.koin.android.ext.koin.androidContext
@@ -27,7 +29,9 @@ class ThmanyahApplication : Application() {
             modules(
                 networkModule,
                 dataModule,
+                dispatcherModule,
                 homeModule,
+                searchModule,
                 errorModule,
                 loggingModule
             )
