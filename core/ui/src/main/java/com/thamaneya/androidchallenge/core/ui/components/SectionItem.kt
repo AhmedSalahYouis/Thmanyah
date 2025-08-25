@@ -3,9 +3,7 @@ package com.thamaneya.androidchallenge.core.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
@@ -42,9 +40,9 @@ fun SectionItem(
                 LazyHorizontalGrid(
                     rows = GridCells.Fixed(1),
                     contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(max = 200.dp)
+                    modifier = Modifier.heightIn(max = 280.dp)
                 ) {
                     items(section.items) { item ->
                         CoreCard(
@@ -59,9 +57,9 @@ fun SectionItem(
                 LazyHorizontalGrid(
                     rows = GridCells.Fixed(if (section.items.size == 1) 1 else 2),
                     contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(min= 100.dp,max = 300.dp)
+                    modifier = Modifier.heightIn(max = if (section.items.size == 1) 120.dp else 300.dp)
                 ) {
                     items(section.items) { item ->
                         CoreCardTwoLines(
@@ -77,9 +75,9 @@ fun SectionItem(
                 LazyHorizontalGrid(
                     rows = GridCells.Fixed(1),
                     contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(max = 200.dp)
+                    modifier = Modifier.heightIn(max = 280.dp)
                 ) {
                     items(section.items) { item ->
                         CoreCard(
@@ -95,9 +93,9 @@ fun SectionItem(
                 LazyHorizontalGrid(
                     rows = GridCells.Fixed(1),
                     contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(max = 200.dp)
+                    modifier = Modifier.heightIn(max = 280.dp)
                 ) {
                     items(section.items) { item ->
                         CoreCard(
@@ -113,9 +111,9 @@ fun SectionItem(
                 LazyHorizontalGrid(
                     rows = GridCells.Fixed(1),
                     contentPadding = PaddingValues(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.heightIn(max = 200.dp)
+                    modifier = Modifier.heightIn(max = 280.dp)
                 ) {
                     items(section.items) { item ->
                         CoreCard(
@@ -126,8 +124,6 @@ fun SectionItem(
                 }
             }
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
     }
 
     LaunchedEffect(Unit) {

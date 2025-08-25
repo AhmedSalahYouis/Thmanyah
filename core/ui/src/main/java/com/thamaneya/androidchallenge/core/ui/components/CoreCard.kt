@@ -1,29 +1,39 @@
 package com.thamaneya.androidchallenge.core.ui.components
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.thamaneya.androidchallenge.core.model.HomeItem
+import com.thamaneya.androidchallenge.core.model.PodcastItem
 import com.thamaneya.androidchallenge.core.ui.DurationFormatter
 
 /**
@@ -38,73 +48,70 @@ fun CoreCard(
     Card(
         modifier = modifier
             .width(200.dp)
-            .height(200.dp),
+            .heightIn(max = 270.dp),
         shape = RoundedCornerShape(16.dp),
         onClick = onClick ?: {},
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f)
         )
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            // Image section
-            Box(
+            // Image section - top of card, fully visible
+            ImageAsync(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-            ) {
-                ImageAsync(
-                    imageUrl = item.avatarUrl,
-                    contentDescription = item.name,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
-                )
-                
-                // Duration chip overlay
-                item.durationSeconds?.let { duration ->
-                    if (duration > 0) {
-                        Surface(
-                            modifier = Modifier
-                                .padding(8.dp)
-                                .align(Alignment.TopEnd),
-                            color = Color.Black.copy(alpha = 0.7f),
-                            shape = RoundedCornerShape(4.dp)
-                        ) {
-                            Text(
-                                text = DurationFormatter.formatDuration(duration),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = Color.White,
-                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                            )
-                        }
-                    }
-                }
-            }
-            
-            // Content section
+                    .height(200.dp)
+                    .width(200.dp)
+                    .clip(RoundedCornerShape(16.dp)),
+                imageUrl = item.avatarUrl,
+                contentDescription = item.name,
+                contentScale = ContentScale.Crop // Changed from Crop to Fit to show full image
+            )
+
+            // Content section - below the image
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .weight(1f) // Takes remaining space
                     .padding(12.dp)
             ) {
                 Text(
                     text = item.name,
                     style = MaterialTheme.typography.titleMedium,
-                    maxLines = 2,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     color = MaterialTheme.colorScheme.onSurface
                 )
-                
+
                 Spacer(modifier = Modifier.height(4.dp))
-                
-                Text(
-                    text = item.description,
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+
+                // Play button with duration - at the bottom of content
+                item.durationSeconds?.let { duration ->
+                    if (duration > 0) {
+                        Surface(
+                            modifier = Modifier
+                                .align(Alignment.Start),
+                            color = Color.DarkGray.copy(alpha = 0.7f),
+                            shape = RoundedCornerShape(16.dp)
+                        ) {
+                            Row(modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)) {
+                                Icon(
+                                    imageVector = Icons.Default.PlayArrow,
+                                    contentDescription = "Play",
+                                    tint = Color.White,
+                                    modifier = Modifier.align(CenterVertically)
+                                )
+                                Text(
+                                    modifier = Modifier.align(CenterVertically),
+                                    text = DurationFormatter.formatDuration(duration),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = Color.White,
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -121,7 +128,7 @@ fun CoreCardTwoLines(
 ) {
     Card(
         modifier = modifier
-            .width(200.dp)
+            .width(400.dp)
             .height(120.dp),
         shape = RoundedCornerShape(16.dp),
         onClick = onClick ?: {},
@@ -130,67 +137,87 @@ fun CoreCardTwoLines(
         )
     ) {
         Row(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(120.dp)
         ) {
-            // Image section
-            Box(
+            AsyncImage(
+                model = item.avatarUrl,
+                contentDescription = item.name,
                 modifier = Modifier
+                    .align(CenterVertically)
                     .width(120.dp)
-                    .fillMaxHeight()
-            ) {
-                ImageAsync(
-                    imageUrl = item.avatarUrl,
-                    contentDescription = item.name,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
-                )
-                
-                // Duration chip overlay
-                item.durationSeconds?.let { duration ->
-                    if (duration > 0) {
-                        Surface(
-                            modifier = Modifier
-                                .padding(8.dp)
-                                .align(Alignment.TopEnd),
-                            color = Color.Black.copy(alpha = 0.7f),
-                            shape = RoundedCornerShape(4.dp)
-                        ) {
-                            Text(
-                                text = DurationFormatter.formatDuration(duration),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = Color.White,
-                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                            )
-                        }
-                    }
-                }
-            }
-            
-            // Content section
+                    .height(120.dp)
+                    .clip(RoundedCornerShape(16.dp)),
+                contentScale = ContentScale.Crop
+            )
+
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(12.dp)
+                    .align(CenterVertically)
+                    .weight(1f)
+                    .padding(horizontal = 8.dp),
             ) {
+
                 Text(
                     text = item.name,
-                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    color = MaterialTheme.colorScheme.onSurface
                 )
-                
+
                 Spacer(modifier = Modifier.height(4.dp))
-                
-                Text(
-                    text = item.description,
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                // Duration chip overlay
+                DurationChipOverlay(item)
             }
         }
     }
 }
 
+@Composable
+private fun ColumnScope.DurationChipOverlay(item: HomeItem) {
+    item.durationSeconds?.let { duration ->
+        if (duration > 0) {
+            Surface(
+                modifier = Modifier
+                    .padding(0.dp)
+                    .align(Alignment.Start),
+                color = Color.DarkGray.copy(alpha = 0.7f),
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Row(modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Play",
+                        tint = Color.White,
+                        modifier = Modifier.align(CenterVertically)
+                    )
+                    Text(
+                        modifier = Modifier.align(CenterVertically),
+                        text = DurationFormatter.formatDuration(duration),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = Color.White,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun CoreCardPreview() {
+    CoreCard(
+        item = PodcastItem.Default
+    )
+}
+
+@Preview
+@Composable
+fun CoreCardTwoLinesPreview() {
+    CoreCardTwoLines(
+        item = PodcastItem.Default
+    )
+}
