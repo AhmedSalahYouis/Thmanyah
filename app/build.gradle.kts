@@ -37,6 +37,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "2.0.21"
@@ -49,8 +50,10 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:data"))
     implementation(project(":core:network"))
+    implementation(project(":core:logger"))
+    implementation(project(":core:error"))
     implementation(project(":core:ui"))
-    
+
     // Core Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -62,6 +65,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.ui.util)
 
     // Paging
     implementation(libs.paging.compose)
@@ -76,6 +80,9 @@ dependencies {
     
     // Lifecycle
     implementation(libs.lifecycle.viewmodel.compose)
+    
+    // Logging
+    implementation(libs.timber)
     
     // Testing
     testImplementation(libs.junit)

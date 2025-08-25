@@ -28,4 +28,5 @@ include(":core:data")
 include(":core:ui")
 include(":core:testing")
 include(":benchmarks")
- 
+include(":core:error")
+include(":core:logger")
