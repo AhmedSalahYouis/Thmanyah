@@ -39,6 +39,7 @@ android {
         compose = true
         buildConfig = true
     }
+    @Suppress("UnstableApiUsage")
     composeOptions {
         kotlinCompilerExtensionVersion = "2.0.21"
     }
@@ -47,6 +48,7 @@ android {
 dependencies {
     // Feature modules
     implementation(project(":feature:home"))
+    implementation(project(":feature:search"))
     implementation(project(":core:model"))
     implementation(project(":core:data"))
     implementation(project(":core:network"))

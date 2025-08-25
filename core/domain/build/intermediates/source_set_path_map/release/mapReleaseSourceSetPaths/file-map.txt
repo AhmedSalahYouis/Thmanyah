@@ -1,0 +1,8 @@
+com.thamaneya.androidchallenge.core.domain-pngs-0 /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/generated/res/pngs/release
+com.thamaneya.androidchallenge.core.domain-resValues-1 /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/generated/res/resValues/release
+com.thamaneya.androidchallenge.core.domain-mergeReleaseResources-2 /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.thamaneya.androidchallenge.core.domain-mergeReleaseResources-3 /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.thamaneya.androidchallenge.core.domain-release-4 /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/merged_res/release/mergeReleaseResources
+com.thamaneya.androidchallenge.core.domain-main-5 /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/src/main/res
+com.thamaneya.androidchallenge.core.domain-release-6 /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/src/release/res
+com.thamaneya.androidchallenge.core.domain-release-7 /Users/apple/AndroidStudioProjects/Thmanyah/core/model/build/intermediates/packaged_res/release/packageReleaseResources

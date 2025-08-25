@@ -22,9 +22,11 @@ dependencyResolutionManagement {
 rootProject.name = "Thmanyah"
 include(":app")
 include(":feature:home")
+include(":feature:search")
 include(":core:model")
 include(":core:network")
 include(":core:data")
+include(":core:domain")
 include(":core:ui")
 include(":core:testing")
 include(":benchmarks")

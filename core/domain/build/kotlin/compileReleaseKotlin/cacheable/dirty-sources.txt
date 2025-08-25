@@ -1,0 +1,3 @@
+/Users/apple/AndroidStudioProjects/Thmanyah/core/domain/src/main/java/com/thamaneya/androidchallenge/core/domain/search/SearchUseCase.kt
+/Users/apple/AndroidStudioProjects/Thmanyah/core/domain/src/main/java/com/thamaneya/androidchallenge/core/domain/search/SearchRepository.kt
+/Users/apple/AndroidStudioProjects/Thmanyah/core/domain/src/main/java/com/thamaneya/androidchallenge/core/domain/DomainModule.kt

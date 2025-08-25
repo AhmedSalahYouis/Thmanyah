@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml:2:13-83
+INJECTED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml:2:13-83
+	package
+		INJECTED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml
+	xmlns:android
+		ADDED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml:2:23-81
+uses-sdk
+INJECTED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml reason: use-sdk injection requested
+INJECTED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml
+INJECTED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml
+	android:targetSdkVersion
+		INJECTED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml
+	android:minSdkVersion
+		INJECTED from /Users/apple/AndroidStudioProjects/Thmanyah/core/domain/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest2067808269338531473.xml
