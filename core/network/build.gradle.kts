@@ -40,7 +40,8 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
-    
+    implementation(libs.tracing.ktx)
+
     // Koin
     implementation(libs.koin.android)
     
