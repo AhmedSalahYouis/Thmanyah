@@ -16,20 +16,8 @@ config:
   warningsAsErrors: false
   checkExhaustiveness: false
   # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
-  excludes: |
-    **/test/**
-    **/androidTest/**
-    **/commonTest/**
-    **/jvmTest/**
-    **/androidUnitTest/**
-    **/androidInstrumentedTest/**
-    **/jsTest/**
-    **/iosTest/**
-    **/*Test.kt
-    **/*Tests.kt
-    **/testFixtures/**
-    **/build/**
-    **/.gradle/**
+  # Excludes are now handled in Gradle build files using SourceTask configuration
+  excludes: ''
 
 processors:
   active: true
