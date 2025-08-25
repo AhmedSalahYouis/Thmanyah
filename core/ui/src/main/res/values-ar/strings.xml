@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="duration_hours">س</string>
+    <string name="duration_minutes">د</string>
+    <string name="duration_less_than_minute">&gt;1 د</string>
+</resources>

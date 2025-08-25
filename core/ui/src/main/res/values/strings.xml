@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="duration_hours">h</string>
+    <string name="duration_minutes">min</string>
+    <string name="duration_less_than_minute">&gt;1 min</string>
+</resources>
