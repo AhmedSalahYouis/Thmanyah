@@ -18,6 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -33,14 +34,7 @@ import com.thamaneya.androidchallenge.core.ui.components.EmptyView
 import com.thamaneya.androidchallenge.core.ui.components.ErrorView
 import com.thamaneya.androidchallenge.core.ui.components.SectionItem
 import com.thamaneya.androidchallenge.core.ui.extensions.toUiText
-import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
-
-/**
- * Main route for the Search feature
- */
-@Serializable
-object Search
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,7 +57,7 @@ fun SearchRoute(
                         )
                     }
                 },
-                title = { Text(stringResource(R.string.search_title)) }
+                title = { Text(text = stringResource(R.string.search_title), style = MaterialTheme.typography.titleLarge) }
             )
         }
     ) { padding ->
@@ -76,7 +70,7 @@ fun SearchRoute(
             OutlinedTextField(
                 value = ui.query,
                 onValueChange = { viewModel.onEvent(SearchEvent.OnQueryChanged(it)) },
-                placeholder = { Text(stringResource(R.string.search_placeholder)) },
+                placeholder = { Text(text = stringResource(R.string.search_placeholder), style = MaterialTheme.typography.bodyLarge) },
                 leadingIcon = {
                     Icon(
                         Icons.Default.Search,
@@ -97,8 +91,7 @@ fun SearchRoute(
             when {
                 ui.isError -> {
                     ErrorView(
-                        text = ui.error?.toUiText()?.asString()
-                            ?: stringResource(R.string.search_error_unknown),
+                        text = ui.error?.toUiText()?.asString() ?: stringResource(R.string.search_error_unknown),
                         retryMessage = stringResource(R.string.search_action_retry),
                         onRetry = { viewModel.onEvent(SearchEvent.OnRetry) }
                     )
@@ -114,14 +107,12 @@ fun SearchRoute(
 
                 ui.isQueryEmpty -> {
                     EmptyView(
-                        text = stringResource(R.string.search_empty_query_guide)
+                        text = stringResource(R.string.search_empty_query_guide),
                     )
                 }
 
                 ui.isEmptyResults -> {
-                    EmptyView(
-                        text = stringResource(R.string.search_empty_results)
-                    )
+                    EmptyView(text = stringResource(R.string.search_empty_results))
                 }
 
                 else -> {
