@@ -1,0 +1,11 @@
+<resources>
+    <string name="error_network_unavailable">No internet connection. Please check your network.</string>
+    <string name="error_network_exception">Unable to connect to server. Check your connection and try again</string>
+    <string name="error_timeout">Request timed out. please try again later.</string>
+    <string name="error_http">Server error. please try again later</string>
+    <string name="error_parse">Failed to process your request. please contact support team if the problem persists</string>
+    <string name="error_generic">An unexpected error occurred. please contact support team if the problem persists</string>
+    <string name="not_found">Not Found. the requested data was not found in our records</string>
+    <string name="unexpected_error">unknown error occurred</string>
+
+</resources>
