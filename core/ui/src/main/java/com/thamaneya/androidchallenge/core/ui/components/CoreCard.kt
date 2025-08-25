@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.ui
+package com.thamaneya.androidchallenge.core.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.thamaneya.androidchallenge.core.model.HomeItem
+import com.thamaneya.androidchallenge.core.ui.DurationFormatter
 
 /**
  * Core card composable for displaying home items
@@ -36,7 +37,7 @@ fun CoreCard(
 ) {
     Card(
         modifier = modifier
-            .width(400.dp)
+            .width(200.dp)
             .height(200.dp),
         shape = RoundedCornerShape(16.dp),
         onClick = onClick ?: {},
@@ -120,7 +121,7 @@ fun CoreCardTwoLines(
 ) {
     Card(
         modifier = modifier
-            .width(400.dp)
+            .width(200.dp)
             .height(120.dp),
         shape = RoundedCornerShape(16.dp),
         onClick = onClick ?: {},

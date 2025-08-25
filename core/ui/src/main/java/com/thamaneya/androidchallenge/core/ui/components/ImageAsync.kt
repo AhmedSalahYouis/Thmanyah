@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.ui
+package com.thamaneya.androidchallenge.core.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

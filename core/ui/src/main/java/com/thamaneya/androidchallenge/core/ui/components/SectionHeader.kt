@@ -1,7 +1,8 @@
-package com.thamaneya.androidchallenge.core.ui
+package com.thamaneya.androidchallenge.core.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -38,7 +39,7 @@ fun SectionHeader(
         if (showAction && onActionClick != null) {
             IconButton(onClick = onActionClick) {
                 Icon(
-                    imageVector = Icons.Default.ArrowForward,
+                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                     contentDescription = "More",
                     tint = MaterialTheme.colorScheme.primary
                 )
