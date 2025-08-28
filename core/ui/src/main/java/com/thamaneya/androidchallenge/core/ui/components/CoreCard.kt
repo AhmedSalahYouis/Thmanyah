@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -129,25 +131,25 @@ fun CoreCardTwoLines(
     Card(
         modifier = modifier
             .width(400.dp)
-            .height(120.dp),
+            .height(96.dp),
         shape = RoundedCornerShape(16.dp),
         onClick = onClick ?: {},
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp)
+                .fillMaxHeight()
         ) {
             AsyncImage(
                 model = item.avatarUrl,
                 contentDescription = item.name,
                 modifier = Modifier
                     .align(CenterVertically)
-                    .width(120.dp)
-                    .height(120.dp)
+                    .aspectRatio(1f)
+                    .fillMaxHeight()
                     .clip(RoundedCornerShape(16.dp)),
                 contentScale = ContentScale.Crop
             )

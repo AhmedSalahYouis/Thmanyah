@@ -27,7 +27,8 @@
     <string name="home_action_play">Play</string>
     <string name="home_action_pause">Pause</string>
 
-    <!-- Section Headers -->
+    <!-- Home Sections -->
+    <string name="home_section_for_you">For You</string>
     <string name="home_section_podcasts">Podcasts</string>
     <string name="home_section_episodes">Episodes</string>
     <string name="home_section_audio_books">Audio Books</string>
@@ -79,5 +80,10 @@
     <string name="home_status_synced">Synced</string>
     <string name="home_status_sync_failed">Sync failed</string>
     <string name="empty_sections_message">Cooking Something new, stay tuned!</string>
-    <string name="search_icon_description">Search icon</string>
+    <string name="search_icon_description" translatable="false">Search icon</string>
+
+    <string name="home_morning_greeting">Good morning</string>
+    <string name="home_evening_greeting">Good evening</string>
+
+    <string name="comma">,</string>
 </resources>

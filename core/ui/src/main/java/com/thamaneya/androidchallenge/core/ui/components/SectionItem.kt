@@ -58,7 +58,7 @@ fun SectionItem(
                     rows = GridCells.Fixed(if (section.items.size == 1) 1 else 2),
                     contentPadding = PaddingValues(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
                     modifier = Modifier.heightIn(max = if (section.items.size == 1) 120.dp else 300.dp)
                 ) {
                     items(section.items) { item ->
