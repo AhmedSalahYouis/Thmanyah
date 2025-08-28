@@ -16,7 +16,6 @@ import com.thamaneya.androidchallenge.core.model.HomeItem
 import com.thamaneya.androidchallenge.core.model.HomeSection
 import com.thamaneya.androidchallenge.core.model.SectionLayout
 
-
 /**
  * Section item composable
  */
@@ -45,8 +44,9 @@ fun SectionItem(
                     modifier = Modifier.heightIn(max = 280.dp)
                 ) {
                     items(section.items) { item ->
-                        CoreCard(
+                        ContentItemFactory(
                             item = item,
+                            layout = section.layout,
                             onClick = { onItemClick(item) }
                         )
                     }
@@ -62,8 +62,9 @@ fun SectionItem(
                     modifier = Modifier.heightIn(max = if (section.items.size == 1) 120.dp else 300.dp)
                 ) {
                     items(section.items) { item ->
-                        CoreCardTwoLines(
+                        ContentItemFactory(
                             item = item,
+                            layout = section.layout,
                             onClick = { onItemClick(item) }
                         )
                     }
@@ -71,7 +72,6 @@ fun SectionItem(
             }
 
             SectionLayout.BIG_SQUARE -> {
-                // Fallback to square layout
                 LazyHorizontalGrid(
                     rows = GridCells.Fixed(1),
                     contentPadding = PaddingValues(horizontal = 16.dp),
@@ -80,8 +80,9 @@ fun SectionItem(
                     modifier = Modifier.heightIn(max = 280.dp)
                 ) {
                     items(section.items) { item ->
-                        CoreCard(
+                        ContentItemFactory(
                             item = item,
+                            layout = section.layout,
                             onClick = { onItemClick(item) }
                         )
                     }
@@ -89,7 +90,6 @@ fun SectionItem(
             }
 
             SectionLayout.QUEUE -> {
-                // Fallback to square layout
                 LazyHorizontalGrid(
                     rows = GridCells.Fixed(1),
                     contentPadding = PaddingValues(horizontal = 16.dp),
@@ -98,8 +98,9 @@ fun SectionItem(
                     modifier = Modifier.heightIn(max = 280.dp)
                 ) {
                     items(section.items) { item ->
-                        CoreCard(
+                        ContentItemFactory(
                             item = item,
+                            layout = section.layout,
                             onClick = { onItemClick(item) }
                         )
                     }
@@ -107,7 +108,7 @@ fun SectionItem(
             }
 
             SectionLayout.UNKNOWN -> {
-                // Fallback to square layout
+                // Fallback to square layout for unknown layouts
                 LazyHorizontalGrid(
                     rows = GridCells.Fixed(1),
                     contentPadding = PaddingValues(horizontal = 16.dp),
@@ -116,8 +117,9 @@ fun SectionItem(
                     modifier = Modifier.heightIn(max = 280.dp)
                 ) {
                     items(section.items) { item ->
-                        CoreCard(
+                        ContentItemFactory(
                             item = item,
+                            layout = SectionLayout.SQUARE, // Use square as fallback
                             onClick = { onItemClick(item) }
                         )
                     }
