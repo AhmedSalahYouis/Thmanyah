@@ -19,7 +19,6 @@ coil = "2.7.0"
 navigationCompose = "2.9.3"
 lifecycleViewModelCompose = "2.9.2"
 coroutines = "1.10.2"
-roborazzi = "1.7.0"
 turbine = "1.2.1"
 mockk = "1.14.5"
 retrofit-kotlinx-serialization ="3.0.0"
@@ -37,6 +36,12 @@ compose-ui = "1.9.0"
 runtimeAnnotation = "1.9.0"
 navigationRuntimeKtx = "2.9.3"
 detekt = "1.23.8"
+uiautomator = "2.3.0"
+# Benchmark & Profiling
+benchmarkCommon = "1.3.4"
+profileinstaller = "1.4.1"
+baselineprofile = "1.3.4"
+benchmarkMacroJunit4 = "1.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,6 +59,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "compose-ui" }
+androidx-benchmark-common = { module = "androidx.benchmark:benchmark-common", version.ref = "benchmarkCommon" }
 
 # Koin
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
@@ -100,8 +106,7 @@ androidx-test-core = { group = "androidx.test", name = "core", version.ref = "an
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
 androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTestRules" }
 androidx-compose-test = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidxComposeTest" }
-roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
-roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
+androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "profileinstaller" }
 
 # Logging
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
@@ -110,6 +115,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", version = "1.3.0" }
 androidx-runtime-annotation = { group = "androidx.compose.runtime", name = "runtime-annotation", version.ref = "runtimeAnnotation" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -118,3 +125,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+android-test = { id = "com.android.test", version.ref = "agp" }
+baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
