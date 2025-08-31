@@ -135,7 +135,7 @@ private fun HomeContent(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(Modifier.weight(3f), verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(id = R.drawable.salah_profile_pic),
                         contentDescription = "Profile-Picture",
@@ -153,7 +153,8 @@ private fun HomeContent(
                     )
                 }
 
-                Row {
+                Row(Modifier.weight(1f),
+                    horizontalArrangement = Arrangement.End) {
                     IconButton(onClick = onSearchClick) {
                         Icon(
                             Icons.Default.Search,
