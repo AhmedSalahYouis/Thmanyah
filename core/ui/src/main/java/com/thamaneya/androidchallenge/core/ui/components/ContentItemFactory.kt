@@ -1,7 +1,10 @@
 package com.thamaneya.androidchallenge.core.ui.components
 
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.thamaneya.androidchallenge.core.model.AudioArticleItem
 import com.thamaneya.androidchallenge.core.model.AudioBookItem
 import com.thamaneya.androidchallenge.core.model.EpisodeItem
@@ -25,34 +28,45 @@ fun ContentItemFactory(
                 is PodcastItem -> {
                     SquarePodcastItem(
                         podcast = item,
-                        modifier = modifier,
+                        modifier = modifier
+                            .width(200.dp)
+                            .heightIn(max = 270.dp),
                         onClick = onClick
                     )
                 }
+
                 is EpisodeItem -> {
                     SquareEpisodeItem(
                         episode = item,
-                        modifier = modifier,
+                        modifier = modifier
+                            .width(200.dp)
+                            .heightIn(max = 270.dp),
                         onClick = onClick
                     )
                 }
+
                 is AudioBookItem -> {
                     SquareAudioBookItem(
                         audioBook = item,
-                        modifier = modifier,
+                        modifier = modifier
+                            .width(200.dp)
+                            .heightIn(max = 270.dp),
                         onClick = onClick
                     )
                 }
+
                 is AudioArticleItem -> {
                     SquareAudioArticleItem(
                         audioArticle = item,
-                        modifier = modifier,
+                        modifier = modifier
+                            .width(200.dp)
+                            .heightIn(max = 270.dp),
                         onClick = onClick
                     )
                 }
             }
         }
-        
+
         SectionLayout.TWO_LINES_GRID -> {
             when (item) {
                 is PodcastItem -> {
@@ -62,6 +76,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is EpisodeItem -> {
                     TwoLinesGridEpisodeItem(
                         episode = item,
@@ -69,6 +84,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is AudioBookItem -> {
                     TwoLinesGridAudioBookItem(
                         audioBook = item,
@@ -76,6 +92,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is AudioArticleItem -> {
                     TwoLinesGridAudioArticleItem(
                         audioArticle = item,
@@ -86,7 +103,7 @@ fun ContentItemFactory(
 
             }
         }
-        
+
         SectionLayout.BIG_SQUARE -> {
             when (item) {
                 is PodcastItem -> {
@@ -96,6 +113,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is EpisodeItem -> {
                     BigSquareEpisodeItem(
                         episode = item,
@@ -103,6 +121,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is AudioBookItem -> {
                     BigSquareAudioBookItem(
                         audioBook = item,
@@ -110,6 +129,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is AudioArticleItem -> {
                     BigSquareAudioArticleItem(
                         audioArticle = item,
@@ -119,7 +139,7 @@ fun ContentItemFactory(
                 }
             }
         }
-        
+
         SectionLayout.QUEUE -> {
             when (item) {
                 is PodcastItem -> {
@@ -129,6 +149,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is EpisodeItem -> {
                     QueueEpisodeItem(
                         episode = item,
@@ -136,6 +157,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is AudioBookItem -> {
                     QueueAudioBookItem(
                         audioBook = item,
@@ -143,6 +165,7 @@ fun ContentItemFactory(
                         onClick = onClick
                     )
                 }
+
                 is AudioArticleItem -> {
                     QueueAudioArticleItem(
                         audioArticle = item,
@@ -152,14 +175,7 @@ fun ContentItemFactory(
                 }
             }
         }
-        
-        SectionLayout.UNKNOWN -> {
-            // Fallback to generic CoreCard for unknown layouts
-            CoreCard(
-                item = item,
-                modifier = modifier,
-                onClick = onClick
-            )
-        }
+
+        else -> {}
     }
 }

@@ -3,4 +3,19 @@
     <string name="duration_hours">س</string>
     <string name="duration_minutes">د</string>
     <string name="duration_less_than_minute">&gt;1 د</string>
+    <string name="episodes">حلقة</string>
+    <string name="duration_now">الآن</string>
+    <string name="duration_one_minute_ago">منذ دقيقة واحدة</string>
+    <string name="duration_minutes_ago">منذ %d دقائق</string>
+    <string name="duration_one_hour_ago">منذ ساعة واحدة</string>
+    <string name="duration_hours_ago">منذ %d ساعات</string>
+    <string name="duration_one_day_ago">منذ يوم واحد</string>
+    <string name="duration_days_ago">منذ %d أيام</string>
+    <string name="duration_one_week_ago">منذ أسبوع واحد</string>
+    <string name="duration_weeks_ago">منذ %d أسابيع</string>
+    <string name="duration_one_month_ago">منذ شهر واحد</string>
+    <string name="duration_months_ago">منذ %d أشهر</string>
+    <string name="duration_one_year_ago">منذ سنة واحدة</string>
+    <string name="duration_years_ago">منذ %d سنوات</string>
+
 </resources>

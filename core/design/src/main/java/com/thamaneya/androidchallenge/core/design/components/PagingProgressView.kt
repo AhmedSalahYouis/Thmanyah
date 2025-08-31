@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.ui.components
+package com.thamaneya.androidchallenge.core.design.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight

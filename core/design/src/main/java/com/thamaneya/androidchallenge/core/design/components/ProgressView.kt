@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.ui.components
+package com.thamaneya.androidchallenge.core.design.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

@@ -41,6 +41,7 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:error"))
+    implementation(project(":core:design"))
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -49,8 +50,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // Image Loading
-    implementation(libs.coil.compose)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(project(":core:network"))
     

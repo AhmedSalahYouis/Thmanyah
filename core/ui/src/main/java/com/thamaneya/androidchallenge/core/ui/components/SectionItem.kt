@@ -23,7 +23,6 @@ import com.thamaneya.androidchallenge.core.model.SectionLayout
 fun SectionItem(
     section: HomeSection,
     onItemClick: (HomeItem) -> Unit,
-    onSectionVisible: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxWidth()
@@ -126,9 +125,5 @@ fun SectionItem(
                 }
             }
         }
-    }
-
-    LaunchedEffect(Unit) {
-        onSectionVisible()
     }
 }

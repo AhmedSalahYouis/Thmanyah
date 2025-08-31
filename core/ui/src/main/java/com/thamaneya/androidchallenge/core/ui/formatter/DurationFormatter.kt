@@ -1,4 +1,4 @@
-package com.thamaneya.androidchallenge.core.ui
+package com.thamaneya.androidchallenge.core.ui.formatter
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -8,7 +8,7 @@ import com.thamaneya.androidchallenge.core.ui.R
  * Utility class for formatting duration in seconds to human-readable format
  */
 object DurationFormatter {
-    
+
     /**
      * Format duration in seconds to localized format
      * - Less than 1 hour: "30 min" or "30 د"
@@ -19,10 +19,10 @@ object DurationFormatter {
     @Composable
     fun formatDuration(seconds: Int?): String {
         if (seconds == null || seconds <= 0) return ""
-        
+
         val hours = seconds / 3600
         val minutes = (seconds % 3600) / 60
-        
+
         return when {
             hours > 0 -> {
                 val hoursText = stringResource(R.string.duration_hours)
