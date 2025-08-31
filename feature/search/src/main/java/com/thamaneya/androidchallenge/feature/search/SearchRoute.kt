@@ -30,8 +30,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import com.thamaneya.androidchallenge.core.ui.components.EmptyView
-import com.thamaneya.androidchallenge.core.ui.components.ErrorView
+import com.thamaneya.androidchallenge.core.design.components.EmptyView
+import com.thamaneya.androidchallenge.core.design.components.ErrorView
 import com.thamaneya.androidchallenge.core.ui.components.SectionItem
 import com.thamaneya.androidchallenge.core.ui.extensions.toUiText
 import org.koin.androidx.compose.koinViewModel
@@ -130,7 +130,6 @@ fun SearchRoute(
                                 onItemClick = { item ->
                                     viewModel.onEvent(SearchEvent.OnItemClick(item))
                                 },
-                                onSectionVisible = {}
                             )
                         }
                     }
@@ -139,4 +138,5 @@ fun SearchRoute(
         }
     }
 }
+
 
