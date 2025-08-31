@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.thamaneya.androidchallenge.feature.search"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -42,6 +42,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:domain"))
     implementation(project(":core:network"))
+    implementation(project(":core:design"))
     implementation(project(":core:ui"))
     implementation(project(":core:error"))
     implementation(project(":core:logger"))

@@ -15,7 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -49,25 +49,22 @@ import com.thamaneya.androidchallenge.core.model.HomeItem
 import com.thamaneya.androidchallenge.core.model.HomeSection
 import com.thamaneya.androidchallenge.core.model.PodcastItem
 import com.thamaneya.androidchallenge.core.model.SectionLayout
-import com.thamaneya.androidchallenge.core.ui.components.EmptyView
-import com.thamaneya.androidchallenge.core.ui.components.ErrorView
-import com.thamaneya.androidchallenge.core.ui.components.ProgressView
+import com.thamaneya.androidchallenge.core.design.components.EmptyView
+import com.thamaneya.androidchallenge.core.design.components.ErrorView
+import com.thamaneya.androidchallenge.core.design.components.PagingProgressView
+import com.thamaneya.androidchallenge.core.design.components.ProgressView
 import com.thamaneya.androidchallenge.core.ui.components.SectionItem
 import com.thamaneya.androidchallenge.core.ui.extensions.toUiText
 import com.thamaneya.androidchallenge.feature.home.components.CategoryChipsRow
 import com.thamaneya.error.DataErrorException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 import java.util.Calendar
 
 /**
  * Main route for the Home feature
  */
-
-@Serializable
-object Home
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -96,12 +93,6 @@ fun HomeRoute(
             selectedContentType = selectedContentType,
             contentTypes = allContentTypes,
             onItemClick = onItemClick,
-            onSectionVisible = { homeSection ->
-                viewModel.onEvent(HomeEvent.OnSectionVisible(homeSection.order))
-            },
-            onRetry = {
-                viewModel.onEvent(HomeEvent.OnRetry)
-            },
             onSearchClick = onSearchClick,
             onCategorySelected = {
                 viewModel.selectContentType(it)
@@ -120,8 +111,6 @@ private fun HomeContent(
     selectedContentType: ContentType?,
     contentTypes: List<ContentType>,
     onItemClick: (HomeItem) -> Unit,
-    onSectionVisible: (HomeSection) -> Unit,
-    onRetry: () -> Unit,
     onSearchClick: () -> Unit,
     onCategorySelected: (ContentType?) -> Unit,
     modifier: Modifier = Modifier
@@ -164,12 +153,21 @@ private fun HomeContent(
                     )
                 }
 
-                IconButton(onClick = { /* notification click */ }) {
-                    Icon(
-                        imageVector = Icons.Default.Notifications,
-                        contentDescription = "Notifications",
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
+                Row {
+                    IconButton(onClick = onSearchClick) {
+                        Icon(
+                            Icons.Default.Search,
+                            contentDescription = stringResource(R.string.home_action_search)
+                        )
+                    }
+
+                    IconButton(onClick = onSearchClick) {
+                        Icon(
+                            imageVector = Icons.Default.Notifications,
+                            contentDescription = "Notifications",
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
                 }
             }
         },
@@ -231,9 +229,6 @@ private fun HomeContent(
                                     SectionItem(
                                         section = homeSection,
                                         onItemClick = onItemClick,
-                                        onSectionVisible = {
-                                            onSectionVisible(homeSection)
-                                        }
                                     )
                                 }
                             }
@@ -242,21 +237,14 @@ private fun HomeContent(
                             item {
                                 when (pagingItems.loadState.append) {
                                     is LoadState.Loading -> {
-                                        Box(
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .padding(16.dp),
-                                            contentAlignment = Alignment.Center
-                                        ) {
-                                            CircularProgressIndicator()
-                                        }
+                                        PagingProgressView()
                                     }
 
                                     is LoadState.Error -> {
                                         ErrorView(
                                             text = stringResource(R.string.home_error_loading_content),
                                             retryMessage = stringResource(id = R.string.home_action_retry),
-                                            onRetry = onRetry
+                                            onRetry = { pagingItems.retry() }
                                         )
                                     }
 
@@ -283,7 +271,6 @@ fun SectionItemSquarePreview() {
             items = List(4) { PodcastItem.Default }
         ),
         onItemClick = {},
-        onSectionVisible = {}
     )
 }
 
@@ -299,7 +286,6 @@ fun SectionItemTwoLinesGridPreview() {
             items = List(1) { PodcastItem.Default }
         ),
         onItemClick = {},
-        onSectionVisible = {}
     )
 }
 
@@ -337,8 +323,6 @@ private fun HomeContentPreview_Default() {
             HomeContent(
                 pagingItems = pagingItems.collectAsLazyPagingItems(),
                 onItemClick = { /* no-op for preview */ },
-                onSectionVisible = { /* no-op for preview */ },
-                onRetry = { /* no-op for preview */ },
                 modifier = Modifier,
                 onSearchClick = {},
                 selectedContentType = ContentType.PODCAST,
@@ -372,8 +356,6 @@ private fun HomeContentPreview_Empty() {
             HomeContent(
                 pagingItems = emptyPaging.collectAsLazyPagingItems(),
                 onItemClick = { },
-                onSectionVisible = { },
-                onRetry = { },
                 modifier = Modifier,
                 onSearchClick = {},
                 selectedContentType = null,

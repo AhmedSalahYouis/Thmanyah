@@ -57,7 +57,26 @@ data class EpisodeItem(
     val releaseDateIso: String,
     val episodeType: String,
     val score: Double?
-) : HomeItem
+) : HomeItem {
+    companion object {
+        val Default = EpisodeItem(
+            id = "",
+            name = "item name",
+            description = "item description goes here",
+            avatarUrl = "",
+            durationSeconds = 1200,
+            podcastId = "podcastId",
+            podcastName = "Podcast Name",
+            audioUrl = "",
+            releaseDateIso = "2023-01-15T10:00:00Z",
+            episodeType = "full",
+            score = null
+        )
+    }
+}
+
+
+
 
 /**
  * Audio book item domain model
@@ -73,6 +92,22 @@ data class AudioBookItem(
     val releaseDateIso: String,
     val score: Double?
 ) : HomeItem
+{
+    companion object {
+        val Default = AudioBookItem(
+            id = "",
+            name = "item name",
+            description = "item description goes here",
+            avatarUrl = "",
+            durationSeconds = 1200,
+            authorName = "Author Name",
+            releaseDateIso = "2023-01-15T10:00:00Z",
+            language = "Arabic",
+            score = null
+        )
+    }
+}
+
 
 /**
  * Audio article item domain model
@@ -87,4 +122,19 @@ data class AudioArticleItem(
     val releaseDateIso: String,
     val score: Double?
 ) : HomeItem
+{
+    companion object {
+        val Default = AudioArticleItem(
+            id = "",
+            name = "item name",
+            description = "item description goes here",
+            avatarUrl = "",
+            durationSeconds = 1200,
+            authorName = "Author Name",
+            releaseDateIso = "2023-01-15T10:00:00Z",
+            score = null
+        )
+    }
+}
+
 

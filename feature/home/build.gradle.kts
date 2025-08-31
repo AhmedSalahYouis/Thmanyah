@@ -43,6 +43,8 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:logger"))
     implementation(project(":core:ui"))
+    implementation(project(":core:design"))
+    implementation(project(":core:error"))
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -64,7 +66,6 @@ dependencies {
     
     // Navigation
     implementation(libs.navigation.compose)
-    implementation(project(":core:error"))
 
     // Testing
     debugImplementation(libs.androidx.ui.tooling)
