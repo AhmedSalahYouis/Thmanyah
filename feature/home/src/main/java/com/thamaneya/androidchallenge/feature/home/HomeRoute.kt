@@ -53,6 +53,7 @@ import com.thamaneya.androidchallenge.core.design.components.EmptyView
 import com.thamaneya.androidchallenge.core.design.components.ErrorView
 import com.thamaneya.androidchallenge.core.design.components.PagingProgressView
 import com.thamaneya.androidchallenge.core.design.components.ProgressView
+import com.thamaneya.androidchallenge.core.design.theme.ThmanyahTheme
 import com.thamaneya.androidchallenge.core.ui.components.SectionItem
 import com.thamaneya.androidchallenge.core.ui.extensions.toUiText
 import com.thamaneya.androidchallenge.feature.home.components.CategoryChipsRow
@@ -261,33 +262,76 @@ private fun HomeContent(
 }
 
 @Preview(showBackground = true)
+@Preview(showBackground = true, name = "Podcast Layout - QUEUE")
 @Composable
-fun SectionItemSquarePreview() {
-    SectionItem(
-        section = HomeSection(
-            name = "Section Title",
-            order = 1,
-            layout = SectionLayout.SQUARE,
-            contentType = ContentType.PODCAST,
-            items = List(4) { PodcastItem.Default }
-        ),
-        onItemClick = {},
-    )
+fun SectionItemQueuePreview() {
+    ThmanyahTheme {
+        SectionItem(
+            section = HomeSection(
+                name = "Section Title",
+                order = 1,
+                layout = SectionLayout.QUEUE,
+                contentType = ContentType.PODCAST,
+                items = List(4) { PodcastItem.Default }
+            ),
+            onItemClick = {},
+        )
+    }
 }
 
 @Preview(showBackground = true)
+@Preview(showBackground = true, name = "Podcast Layout - Square")
+@Composable
+fun SectionItemSquarePreview() {
+    ThmanyahTheme {
+        SectionItem(
+            section = HomeSection(
+                name = "Section Title",
+                order = 1,
+                layout = SectionLayout.SQUARE,
+                contentType = ContentType.PODCAST,
+                items = List(4) { PodcastItem.Default }
+            ),
+            onItemClick = {},
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Preview(showBackground = true, name = "Podcast Layout - Two Lines Grid")
 @Composable
 fun SectionItemTwoLinesGridPreview() {
-    SectionItem(
-        section = HomeSection(
-            name = "Section Title",
-            order = 1,
-            contentType = ContentType.PODCAST,
-            layout = SectionLayout.TWO_LINES_GRID,
-            items = List(1) { PodcastItem.Default }
-        ),
-        onItemClick = {},
-    )
+    ThmanyahTheme {
+        SectionItem(
+            section = HomeSection(
+                name = "Section Title",
+                order = 1,
+                contentType = ContentType.PODCAST,
+                layout = SectionLayout.TWO_LINES_GRID,
+                items = List(1) { PodcastItem.Default }
+            ),
+            onItemClick = {},
+        )
+    }
+}
+
+
+@Preview(showBackground = true)
+@Preview(showBackground = true, name = "Podcast Layout - Big Square")
+@Composable
+fun SectionItemBigSquarePreview() {
+    ThmanyahTheme {
+        SectionItem(
+            section = HomeSection(
+                name = "Section Title",
+                order = 1,
+                contentType = ContentType.PODCAST,
+                layout = SectionLayout.BIG_SQUARE,
+                items = List(1) { PodcastItem.Default }
+            ),
+            onItemClick = {},
+        )
+    }
 }
 
 private fun sampleHomeSection(i: Int): HomeSection =
@@ -318,18 +362,20 @@ private fun previewPagingItemsLoading(): Flow<PagingData<HomeSection>> {
 @Preview(showBackground = true)
 @Composable
 private fun HomeContentPreview_Default() {
-    MaterialTheme {
-        Surface {
-            val pagingItems = remember { previewPagingItemsLoading() }
-            HomeContent(
-                pagingItems = pagingItems.collectAsLazyPagingItems(),
-                onItemClick = { /* no-op for preview */ },
-                modifier = Modifier,
-                onSearchClick = {},
-                selectedContentType = ContentType.PODCAST,
-                contentTypes = listOf(),
-                onCategorySelected = {},
-            )
+    ThmanyahTheme {
+        MaterialTheme {
+            Surface {
+                val pagingItems = remember { previewPagingItemsLoading() }
+                HomeContent(
+                    pagingItems = pagingItems.collectAsLazyPagingItems(),
+                    onItemClick = { /* no-op for preview */ },
+                    modifier = Modifier,
+                    onSearchClick = {},
+                    selectedContentType = ContentType.PODCAST,
+                    contentTypes = listOf(),
+                    onCategorySelected = {},
+                )
+            }
         }
     }
 }
@@ -340,29 +386,29 @@ private fun HomeContentPreview_Default() {
 @Preview(name = "HomeContent • Empty", showBackground = true)
 @Composable
 private fun HomeContentPreview_Empty() {
-    MaterialTheme {
-        Surface {
-            val emptyPaging = remember {
-                flowOf(
-                    PagingData.from(
-                        emptyList<HomeSection>(),
-                        LoadStates(
-                            refresh = LoadState.NotLoading(false),
-                            prepend = LoadState.NotLoading(false),
-                            append = LoadState.NotLoading(false)
+    ThmanyahTheme {
+            Surface {
+                val emptyPaging = remember {
+                    flowOf(
+                        PagingData.from(
+                            emptyList<HomeSection>(),
+                            LoadStates(
+                                refresh = LoadState.NotLoading(false),
+                                prepend = LoadState.NotLoading(false),
+                                append = LoadState.NotLoading(false)
+                            )
                         )
                     )
+                }
+                HomeContent(
+                    pagingItems = emptyPaging.collectAsLazyPagingItems(),
+                    onItemClick = { },
+                    modifier = Modifier,
+                    onSearchClick = {},
+                    selectedContentType = null,
+                    contentTypes = emptyList(),
+                    onCategorySelected = {}
                 )
-            }
-            HomeContent(
-                pagingItems = emptyPaging.collectAsLazyPagingItems(),
-                onItemClick = { },
-                modifier = Modifier,
-                onSearchClick = {},
-                selectedContentType = null,
-                contentTypes = emptyList(),
-                onCategorySelected = {}
-            )
         }
     }
 }

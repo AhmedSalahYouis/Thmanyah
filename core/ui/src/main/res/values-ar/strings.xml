@@ -17,5 +17,6 @@
     <string name="duration_months_ago">منذ %d أشهر</string>
     <string name="duration_one_year_ago">منذ سنة واحدة</string>
     <string name="duration_years_ago">منذ %d سنوات</string>
+    <string name="episodes_count">%d حلقات</string>
 
 </resources>

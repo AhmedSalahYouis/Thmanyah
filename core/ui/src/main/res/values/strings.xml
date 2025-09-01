@@ -17,5 +17,6 @@
     <string name="duration_months_ago">%d months ago</string>
     <string name="duration_one_year_ago">1 year ago</string>
     <string name="duration_years_ago">%d years ago</string>
+    <string name="episodes_count">%d Episodes</string>
 
 </resources>

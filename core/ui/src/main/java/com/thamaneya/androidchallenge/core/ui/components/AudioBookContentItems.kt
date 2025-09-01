@@ -1,9 +1,11 @@
 package com.thamaneya.androidchallenge.core.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -12,10 +14,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -28,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
@@ -58,7 +64,7 @@ fun QueueAudioBookItem(
         shape = RoundedCornerShape(16.dp),
         onClick = onClick ?: {},
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = MaterialTheme.colorScheme.background
         )
     ) {
         Box {
@@ -74,8 +80,7 @@ fun QueueAudioBookItem(
                         contentDescription = audioBook.name,
                         modifier = Modifier
                             .align(CenterVertically)
-                            .aspectRatio(1f)
-                            .fillMaxHeight()
+                            .weight(4f)
                             .clip(RoundedCornerShape(16.dp)),
                         contentScale = ContentScale.Crop
                     )
@@ -84,7 +89,7 @@ fun QueueAudioBookItem(
                 Column(
                     modifier = Modifier
                         .align(CenterVertically)
-                        .weight(1f)
+                        .weight(4f)
                         .padding(horizontal = 8.dp),
                 ) {
                     audioBook.name?.let {
@@ -121,13 +126,15 @@ fun QueueAudioBookItem(
                 }
             }
 
-            Box (
+            Box(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(32.dp),
             ) {
                 Icon(
-                    modifier = Modifier.background(color = White, shape = CircleShape).align(Alignment.BottomEnd),
+                    modifier = Modifier
+                        .background(color = White, shape = CircleShape)
+                        .align(Alignment.BottomEnd),
                     imageVector = Icons.Filled.PlayArrow,
                     contentDescription = "Play",
                     tint = Color.Black
@@ -339,7 +346,7 @@ fun TwoLinesGridAudioBookItem(
         shape = RoundedCornerShape(16.dp),
         onClick = onClick ?: {},
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = MaterialTheme.colorScheme.background
         )
     ) {
         Row(
@@ -360,28 +367,60 @@ fun TwoLinesGridAudioBookItem(
 
             Column(
                 modifier = Modifier
-                    .align(CenterVertically)
+                    .align(Alignment.Bottom)
                     .weight(1f)
                     .padding(horizontal = 8.dp),
             ) {
                 Text(
                     text = audioBook.name,
                     color = MaterialTheme.colorScheme.onBackground,
-                    fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
-                    maxLines = 2,
+                    style = MaterialTheme.typography.labelLarge,
                     overflow = TextOverflow.Ellipsis,
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                // Duration chip overlay
-                DurationChipOverlay(audioBook.durationSeconds)
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    // Duration chip overlay
+                    DurationChipOverlay(audioBook.durationSeconds)
+                    OptionsRow()
+                }
             }
         }
     }
 }
 
+
+@Composable
+private fun RowScope.OptionsRow() {
+    Row(
+        modifier = Modifier
+            .align(Alignment.Bottom)
+            .padding(16.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Default.MoreVert,
+            contentDescription = "options",
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier
+                .size(24.dp)
+                .rotate(90f)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.List,
+            contentDescription = "playlist",
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(24.dp)
+        )
+    }
+}
 @Composable
 private fun DurationChipOverlay(durationSeconds: Int?) {
     durationSeconds?.let { duration ->

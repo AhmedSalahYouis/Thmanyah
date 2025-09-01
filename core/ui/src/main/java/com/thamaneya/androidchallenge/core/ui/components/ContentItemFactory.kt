@@ -1,10 +1,7 @@
 package com.thamaneya.androidchallenge.core.ui.components
 
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.thamaneya.androidchallenge.core.model.AudioArticleItem
 import com.thamaneya.androidchallenge.core.model.AudioBookItem
 import com.thamaneya.androidchallenge.core.model.EpisodeItem
@@ -28,9 +25,6 @@ fun ContentItemFactory(
                 is PodcastItem -> {
                     SquarePodcastItem(
                         podcast = item,
-                        modifier = modifier
-                            .width(200.dp)
-                            .heightIn(max = 270.dp),
                         onClick = onClick
                     )
                 }
@@ -38,9 +32,6 @@ fun ContentItemFactory(
                 is EpisodeItem -> {
                     SquareEpisodeItem(
                         episode = item,
-                        modifier = modifier
-                            .width(200.dp)
-                            .heightIn(max = 270.dp),
                         onClick = onClick
                     )
                 }
@@ -48,9 +39,6 @@ fun ContentItemFactory(
                 is AudioBookItem -> {
                     SquareAudioBookItem(
                         audioBook = item,
-                        modifier = modifier
-                            .width(200.dp)
-                            .heightIn(max = 270.dp),
                         onClick = onClick
                     )
                 }
@@ -58,9 +46,6 @@ fun ContentItemFactory(
                 is AudioArticleItem -> {
                     SquareAudioArticleItem(
                         audioArticle = item,
-                        modifier = modifier
-                            .width(200.dp)
-                            .heightIn(max = 270.dp),
                         onClick = onClick
                     )
                 }
