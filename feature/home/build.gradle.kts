@@ -66,6 +66,7 @@ dependencies {
     
     // Navigation
     implementation(libs.navigation.compose)
+    implementation(libs.androidx.paging.runtime.ktx)
 
     // Testing
     debugImplementation(libs.androidx.ui.tooling)
@@ -74,6 +75,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
     testImplementation(libs.mockk)
+    testImplementation(libs.mockito.kotlin)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
