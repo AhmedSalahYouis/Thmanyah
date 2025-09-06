@@ -117,13 +117,18 @@ fun QueuePodcastItem(
                 }
             }
 
-            Box (
+            Box(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(32.dp),
             ) {
                 Icon(
-                    modifier = Modifier.background(color = White, shape = CircleShape).align(Alignment.BottomEnd),
+                    modifier = Modifier
+                        .background(
+                            color = MaterialTheme.colorScheme.onSurface,
+                            shape = CircleShape
+                        )
+                        .align(Alignment.BottomEnd),
                     imageVector = Icons.Filled.PlayArrow,
                     contentDescription = "Play",
                     tint = Color.Black
@@ -133,8 +138,12 @@ fun QueuePodcastItem(
     }
 }
 
-@Preview(name = "QueuePodcastItem Light", group = "Light", locale= "ar")
-@Preview(name = "QueuePodcastItem Dark", group = "Dark", uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "QueuePodcastItem Light", group = "Light", locale = "ar")
+@Preview(
+    name = "QueuePodcastItem Dark",
+    group = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES
+)
 @Composable
 private fun QueuePodcastItemPreview() {
     ThmanyahTheme {
@@ -196,14 +205,19 @@ fun SquarePodcastItem(
                 Text(
                     text = stringResource(R.string.episodes_count, podcast.episodeCount),
                     style = MaterialTheme.typography.labelSmall,
-                    color = White)
+                    color = MaterialTheme.colorScheme.onSurface
+                )
             }
         }
     }
 }
 
-@Preview(name = "SquarePodcastItem Light", group = "Light", locale= "ar")
-@Preview(name = "SquarePodcastItem Dark", group = "Dark", uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "SquarePodcastItem Light", group = "Light", locale = "ar")
+@Preview(
+    name = "SquarePodcastItem Dark",
+    group = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES
+)
 @Composable
 private fun SquarePodcastItemPreview() {
     ThmanyahTheme {
@@ -259,21 +273,26 @@ fun BigSquarePodcastItem(
                 Text(
                     text = podcast.name,
                     style = MaterialTheme.typography.titleSmall,
-                    color = White,
+                    color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     text = stringResource(R.string.episodes_count, podcast.episodeCount),
                     style = MaterialTheme.typography.labelSmall,
-                    color = White)
+                    color = MaterialTheme.colorScheme.onSurface
+                )
             }
         }
     }
 }
 
 @Preview(name = "BigSquarePodcastItem Light", group = "Light")
-@Preview(name = "BigSquarePodcastItem Dark", group = "Dark", uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
+@Preview(
+    name = "BigSquarePodcastItem Dark",
+    group = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES
+)
 @Composable
 private fun BigSquarePodcastItemPreview() {
     ThmanyahTheme {
@@ -400,7 +419,7 @@ private fun DurationChipOverlay(durationSeconds: Int?) {
                         modifier = Modifier.align(CenterVertically),
                         text = DurationFormatter.formatDuration(duration),
                         style = MaterialTheme.typography.labelSmall,
-                        color = White,
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -408,8 +427,12 @@ private fun DurationChipOverlay(durationSeconds: Int?) {
     }
 }
 
-@Preview(name = "TwoLinesGridPodcastItem Light", group = "Light", locale= "ar")
-@Preview(name = "TwoLinesGridPodcastItem Dark", group = "Dark", uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "TwoLinesGridPodcastItem Light", group = "Light", locale = "ar")
+@Preview(
+    name = "TwoLinesGridPodcastItem Dark",
+    group = "Dark",
+    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES
+)
 @Composable
 private fun TwoLinesGridPodcastItemPreview() {
     ThmanyahTheme {

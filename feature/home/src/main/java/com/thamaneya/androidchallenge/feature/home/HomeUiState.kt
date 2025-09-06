@@ -10,8 +10,4 @@ import kotlinx.coroutines.flow.StateFlow
  */
 data class HomeUiState(
     val paging: StateFlow<PagingData<HomeSection>>? = null,
-    val isLoading: Boolean = false,
-    val isError: Boolean = false,
-    val errorMessage: String? = null,
-    val lastInteractionTs: Long = System.currentTimeMillis()
 )
